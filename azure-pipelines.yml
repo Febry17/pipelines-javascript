@@ -12,9 +12,13 @@ pool:
 stages:
 - stage: Build
   displayName: Build stage
-  jobs:  
+  jobs: 
   - job: Build
     displayName: Build
+    environment: 
+      name: mf-mcis-web-01
+      resourceType: VirtualMachine
+      tags: web # Update or remove value to match your tag
     steps:
     - task: NodeTool@0
       inputs:
