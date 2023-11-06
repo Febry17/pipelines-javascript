@@ -16,7 +16,7 @@ stages:
   - deployment: VMDeploy
     displayName: Web deploy
     environment:
-      name: <environment name>
+      name: mf-mcis-web-01
       resourceType: VirtualMachine
       tags: web
     strategy:
