@@ -4,23 +4,15 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- master
 
-pool:
-  vmImage: ubuntu-latest
+pool: nodepool
 
-stages:
-- stage: Build
-  displayName: Build stage 
-  jobs:
-  - deployment: VMDeploy
-    displayName: Web deploy
-    environment:
-      name: mf-mcis-web-01
-      resourceType: VirtualMachine
-      tags: web
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: echo my first deployment
+steps:
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
